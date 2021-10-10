@@ -6,18 +6,11 @@ let generator = document.getElementById('generate');
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 //event
-generator.addEventListener('click', Action);
-function Action (e){
+generator.addEventListener('click', (e)=>{
     const newZip = document.getElementById('zip').value;
     const feelings = document.getElementById('feelings').value;
     console.log(newZip)
-    getWeatherData(url,newZip,apiKey).then(function(data){
-       console.log(data);
-       getData('/add',{date:newDate , temp:data.list[0].main.temp, content:feelings}) 
-       finallResualt();
-    })
-};
-const getWeatherData = async(url , zip , key)=>{
+    const getWeatherData = async(url , zip , key)=>{
     console.log(url+zip+key)
     const response = await fetch(url+zip+key)
     try{
@@ -27,7 +20,9 @@ const getWeatherData = async(url , zip , key)=>{
         console.log(e);
     }
 }
-const getData = async (url = '' , data = {})=>{
+    getWeatherData(url,newZip,apiKey).then(function(data){
+       console.log(data);
+       const getData = async (url = '' , data = {})=>{
     console.log(data);
     const res = await fetch(url , {
         method:'POST',
@@ -45,8 +40,8 @@ const getData = async (url = '' , data = {})=>{
         console.log(e);
     }
 }
-//show data
-const finallResualt = async ()=>{
+       getData('/add',{date:newDate , temp:data.list[0].main.temp, content:feelings}) 
+       const finallResualt = async ()=>{
     const req = await fetch('/all');
     console.log(req)
     try{
@@ -59,3 +54,11 @@ const finallResualt = async ()=>{
         console.log(e)
     }
 }
+       finallResualt();
+    })
+    
+});
+
+
+
+
