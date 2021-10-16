@@ -1,10 +1,10 @@
 /* Global Variables */
 let url = 'http://api.openweathermap.org/data/2.5/forecast?zip=';
-let apiKey = '&appid=ebfb7b7e7e8e84d1711e53acfe74a580';
+const apiKey = '&appid=ebfb7b7e7e8e84d1711e53acfe74a580&units=imperial';
 let generator = document.getElementById('generate');
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 //event
 generator.addEventListener('click', (e)=>{
     const newZip = document.getElementById('zip').value;

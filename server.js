@@ -39,4 +39,6 @@ app.post('/add' , (req,res)=>{
     content : req.body.content
     }
     projectData.Elements=newData;
+     
+     res.status(200).end();
 })
